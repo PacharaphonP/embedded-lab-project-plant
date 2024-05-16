@@ -21,9 +21,11 @@ var temperature = 0;
 
 var lightVisible = 0;
 let humidVisible = 0;
+let tempVisible = 0;
 
 let yLight = Array(25).fill(null);
 let yHumid = Array(25).fill(null);
+let yTemp = Array(25).fill(null);
 
 let graph = new Chart("chart", {
   type: "line",
@@ -44,10 +46,24 @@ let graph = new Chart("chart", {
         fill: false,
         hidden: humidVisible,
       },
+      {
+        label: "Temperature",
+        data: yTemp,
+        borderColor: "red",
+        fill: false,
+        hidden: tempVisible,
+      },
     ],
   },
   options: {
     scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
       yAxes: [
         {
           display: true,
@@ -62,7 +78,7 @@ let graph = new Chart("chart", {
     },
     elements: {
       point: {
-        radius: 0,
+        radius: 1,
       },
     },
   },
@@ -78,6 +94,12 @@ function humidityShow() {
   if (humidVisible) humidVisible = 0;
   else humidVisible = 1;
   graph.data.datasets[1].hidden = humidVisible;
+  graph.update();
+}
+function temperatureShow() {
+  if (tempVisible) tempVisible = 0;
+  else tempVisible = 1;
+  graph.data.datasets[2].hidden = tempVisible;
   graph.update();
 }
 
@@ -112,10 +134,12 @@ function update() {
 
   yLight.shift();
   yHumid.shift();
+  yTemp.shift();
   yLight.push(light);
   yHumid.push(humidity);
+  yTemp.push(temperature);
   graph.update();
 }
 
 update();
-var interval = setInterval(update, 1000);
+var interval = setInterval(update, 11500);
