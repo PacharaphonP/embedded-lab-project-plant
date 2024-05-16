@@ -12,29 +12,37 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
+var firebaseRef = firebase.database().ref("/humidity");
 
 var humidity = 0;
 var light = 0;
 var lastUpdate = 0;
 var temperature = 0;
-var firebaseRef = firebase.database().ref("/humidity");
-let yLight = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let yHumid = [10, 20, 30, 40, 50, 60, 70, 80, 90, 10];
+
+var lightVisible = 0;
+let humidVisible = 0;
+
+let yLight = Array(25).fill(null);
+let yHumid = Array(25).fill(null);
 
 let graph = new Chart("chart", {
   type: "line",
   data: {
-    labels: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    labels: Array(25).fill(""),
     datasets: [
       {
+        label: "light",
         data: yLight,
-        borderColor: "red",
+        borderColor: "gold",
         fill: false,
+        hidden: lightVisible,
       },
       {
+        label: "Humidity",
         data: yHumid,
         borderColor: "green",
         fill: false,
+        hidden: humidVisible,
       },
     ],
   },
@@ -52,8 +60,26 @@ let graph = new Chart("chart", {
         },
       ],
     },
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
   },
 });
+
+function lightShow() {
+  if (lightVisible) lightVisible = 0;
+  else lightVisible = 1;
+  graph.data.datasets[0].hidden = lightVisible;
+  graph.update();
+}
+function humidityShow() {
+  if (humidVisible) humidVisible = 0;
+  else humidVisible = 1;
+  graph.data.datasets[1].hidden = humidVisible;
+  graph.update();
+}
 
 function update() {
   firebaseRef = firebase.database().ref("/humidity");
