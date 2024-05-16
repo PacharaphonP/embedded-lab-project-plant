@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Plant Protector</title>
+  <meta name="description" content="a mocking site for me to play with css">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link rel="icon" type="'image/x-icon" href="./Images/pixil-frame-0.png">
+</head>
+
+<body>
+  <header class="main-header">
+
+    <h1 class="band-name band-name-large">LIVE DATA</h1>
+    <div class="container">
+      <!-- <button class="btn btn-header" type="button">Get our Latest Album</button>
+      <button class="btn btn-header btn-play" type="button">&#9658;</button> -->
+    </div>
+
+  </header>
+  <section class="content-section container">
+    <h2 class="section-header">your plant status</h2>
+    <canvas id="chart" style="width:100%;max-width:700px"></canvas>
+    <div>
+      <div class="tour-row">
+        <span class="tour-item tour-date">LIGHT</span>
+        <span class="tour-item tour-arena" id="light">loading</span>
+        <button type="button" class="tour-item tour-btn btn btn-primary">moderate</button>
+      </div>
+      <div class="tour-row">
+        <span class="tour-item tour-date">HUMIDITY</span>
+        <span class="tour-item tour-arena" id="humidity">loading</span>
+        <button type="button" class="tour-item tour-btn btn btn-primary">moderate</button>
+      </div>
+      <div class="tour-row">
+        <span class="tour-item tour-date">TEMPERATURE</span>
+        <span class="tour-item tour-arena" id="temperature">loading</span>
+        <button type="button" class="tour-item tour-btn btn btn-primary">moderate</button>
+      </div>
+      <div class="tour-row">
+        <span class="tour-item tour-date">LAST UPDATED ON</span>
+        <span class="tour-item tour-arena" id="time">loading</span>
+      </div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-analytics.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</body>
+
+
+</html>
