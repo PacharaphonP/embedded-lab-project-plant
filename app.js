@@ -23,37 +23,45 @@ var lightVisible = 0;
 let humidVisible = 0;
 let tempVisible = 0;
 
-let yLight = Array(25).fill(null);
-let yHumid = Array(25).fill(null);
-let yTemp = Array(25).fill(null);
+let yLight = [];
+var yHumid = [];
+let yTemp = [];
 
+let glabel = [];
+var i = 25;
+var currentdata=1;
+
+let data1 = [
+  {
+    label: "light",
+    data: yLight,
+    borderColor: "gold",
+    fill: false,
+    hidden: lightVisible,
+  },
+  {
+    label: "Humidity",
+    data: yHumid,
+    borderColor: "green",
+    fill: false,
+    hidden: humidVisible,
+  },
+];
+
+let data2 = [
+  {
+    label: "Temperature",
+    data: yTemp,
+    borderColor: "red",
+    fill: false,
+    hidden: tempVisible,
+  },{}
+];
 let graph = new Chart("chart", {
   type: "line",
   data: {
-    labels: Array(25).fill(""),
-    datasets: [
-      {
-        label: "light",
-        data: yLight,
-        borderColor: "gold",
-        fill: false,
-        hidden: lightVisible,
-      },
-      {
-        label: "Humidity",
-        data: yHumid,
-        borderColor: "green",
-        fill: false,
-        hidden: humidVisible,
-      },
-      {
-        label: "Temperature",
-        data: yTemp,
-        borderColor: "red",
-        fill: false,
-        hidden: tempVisible,
-      },
-    ],
+    labels: glabel,
+    datasets: data1,
   },
   options: {
     scales: {
@@ -68,10 +76,9 @@ let graph = new Chart("chart", {
         {
           display: true,
           ticks: {
-            suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+            min: 0, // minimum will be 0, unless there is a lower value.
             // OR //
             beginAtZero: true, // minimum value will be 0.
-            max: 100,
           },
         },
       ],
@@ -85,6 +92,7 @@ let graph = new Chart("chart", {
 });
 
 function lightShow() {
+  //graph.data.datasets = data1;
   if (lightVisible) lightVisible = 0;
   else lightVisible = 1;
   graph.data.datasets[0].hidden = lightVisible;
@@ -97,9 +105,8 @@ function humidityShow() {
   graph.update();
 }
 function temperatureShow() {
-  if (tempVisible) tempVisible = 0;
-  else tempVisible = 1;
-  graph.data.datasets[2].hidden = tempVisible;
+  if(currentdata==2) {graph.data.datasets = data1; currentdata=1;}
+  else {graph.data.datasets = data2;currentdata=2;}
   graph.update();
 }
 
@@ -115,7 +122,7 @@ function update() {
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     light = dataSnapshot.val().toFixed(2);
-    document.querySelector("#light").innerHTML = light + " %";
+    document.querySelector("#light").innerHTML = light + " lx";
   });
 
   firebaseRef = firebase.database().ref("/temperature");
@@ -131,10 +138,15 @@ function update() {
     lastUpdate = dataSnapshot.val();
     document.querySelector("#time").innerHTML = lastUpdate;
   });
-
-  yLight.shift();
-  yHumid.shift();
-  yTemp.shift();
+  if (i == 0) {
+    yLight.shift();
+    yHumid.shift();
+    yTemp.shift();
+  } else {
+    glabel.push("");
+    i--;
+  }
+  console.log(humidity);
   yLight.push(light);
   yHumid.push(humidity);
   yTemp.push(temperature);
@@ -142,4 +154,4 @@ function update() {
 }
 
 update();
-var interval = setInterval(update, 11500);
+var interval = setInterval(update, 500);
