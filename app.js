@@ -19,9 +19,9 @@ var light = 0;
 var lastUpdate = 0;
 var temperature = 0;
 
-var lightVisible = 0;
-let humidVisible = 0;
-let tempVisible = 0;
+var lightVisible = 1;
+let humidVisible = 1;
+let tempVisible = 1;
 
 let yLight = [];
 var yHumid = [];
@@ -37,14 +37,14 @@ let data1 = [
     data: yLight,
     borderColor: "gold",
     fill: false,
-    hidden: lightVisible,
+    hidden: !lightVisible,
   },
   {
     label: "Humidity",
     data: yHumid,
     borderColor: "green",
     fill: false,
-    hidden: humidVisible,
+    hidden: !humidVisible,
   },
 ];
 
@@ -55,13 +55,37 @@ let data2 = [
     borderColor: "red",
     fill: false,
     hidden: tempVisible,
-  },{}
+  },{
+    label:"",
+    borderColor: "white",
+    }
 ];
 let graph = new Chart("chart", {
   type: "line",
   data: {
     labels: glabel,
-    datasets: data1,
+    datasets: [
+      {
+        label: "light",
+        data: yLight,
+        borderColor: "gold",
+        fill: false,
+        hidden: !lightVisible,
+      },
+      {
+        label: "Humidity",
+        data: yHumid,
+        borderColor: "green",
+        fill: false,
+        hidden: !humidVisible,
+      },{
+        label: "Temperature",
+        data: yTemp,
+        borderColor: "red",
+        fill: false,
+        hidden: !tempVisible,
+      },
+    ],
   },
   options: {
     scales: {
@@ -79,6 +103,7 @@ let graph = new Chart("chart", {
             min: 0, // minimum will be 0, unless there is a lower value.
             // OR //
             beginAtZero: true, // minimum value will be 0.
+            
           },
         },
       ],
@@ -93,20 +118,46 @@ let graph = new Chart("chart", {
 
 function lightShow() {
   //graph.data.datasets = data1;
-  if (lightVisible) lightVisible = 0;
-  else lightVisible = 1;
-  graph.data.datasets[0].hidden = lightVisible;
-  graph.update();
+  if(currentdata==1){
+    if (lightVisible) {
+      lightVisible = 0;
+      // graph.data.datasets.shift();
+    }
+    else {
+      lightVisible = 1;
+      // graph.data.datasets.pop();
+      // graph.data.datasets.push(lightData);
+      // if(humidVisible) graph.data.datasets.push(humidData);
+    }
+    graph.data.datasets[0].hidden = !lightVisible;
+    graph.update();
+  }
 }
 function humidityShow() {
-  if (humidVisible) humidVisible = 0;
-  else humidVisible = 1;
-  graph.data.datasets[1].hidden = humidVisible;
-  graph.update();
+  if(currentdata==1){
+    if (humidVisible){
+      humidVisible = 0;
+      // graph.data.datasets.pop();
+    }
+    else {
+      humidVisible = 1;
+      // graph.data.datasets.pop();
+      // if(lightVisible) graph.data.datasets.push(lightData);
+      // graph.data.datasets.push(humidData);
+    }
+    graph.data.datasets[1].hidden = !humidVisible;
+    graph.update();
+  }
 }
 function temperatureShow() {
-  if(currentdata==2) {graph.data.datasets = data1; currentdata=1;}
-  else {graph.data.datasets = data2;currentdata=2;}
+  // if(currentdata==2) {
+  //   graph.data.datasets = data1;
+  //   currentdata=1;
+  // }
+  // else {graph.data.datasets = data2;currentdata=2;}
+  if(tempVisible) tempVisible=0;
+  else tempVisible=1;
+  graph.data.datasets[2].hidden = !tempVisible;
   graph.update();
 }
 
