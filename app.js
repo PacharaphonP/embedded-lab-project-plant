@@ -169,9 +169,9 @@ function plantDescription() {
 }
 function plantPic() {
   if (light > 25 && humidity >= 30 && temperature <= 38)
-    return "./Images/Shirt.png";
+    return "./Images/้healthy.png";
   else {
-    return "./Images/Album 3.png";
+    return "./Images/sad.jpg";
   }
 }
 function update() {
