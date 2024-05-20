@@ -98,6 +98,7 @@ let graph = new Chart("chart", {
       ],
       yAxes: [
         {
+          //gridLines:false,
           display: true,
           ticks: {
             min: 0, // minimum will be 0, unless there is a lower value.
@@ -173,7 +174,7 @@ function update() {
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     light = dataSnapshot.val().toFixed(2);
-    document.querySelector("#light").innerHTML = light + " lx";
+    document.querySelector("#light").innerHTML = light + " %";
   });
 
   firebaseRef = firebase.database().ref("/temperature");

@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Plant Protector</title>
+    <meta name="description" content="a mocking site for me to play with css" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="icon" type="'image/x-icon" href="./Images/pixil-frame-0.png" />
+  </head>
 
-<head>
-  <title>Plant Protector</title>
-  <meta name="description" content="a mocking site for me to play with css">
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-  <link rel="icon" type="'image/x-icon" href="./Images/pixil-frame-0.png">
-</head>
-
-<body>
-  <header class="main-header">
-
-    <h1 class="band-name band-name-large">LIVE DATA</h1>
-    <div class="container">
-      <!-- <button class="btn btn-header" type="button">Get our Latest Album</button>
+  <body>
+    <header class="main-header">
+      <h1 class="band-name band-name-large">LIVE DATA</h1>
+      <div class="container">
+        <!-- <button class="btn btn-header" type="button">Get our Latest Album</button>
       <button class="btn btn-header btn-play" type="button">&#9658;</button> -->
-    </div>
-
-  </header>
-  <section class="content-section container">
-    <h2 class="section-header">your plant environment status</h2>
-    <canvas id="chart" style="width:100%;max-width:1000px"></canvas>
-    <div>
-      <div class="tour-row">
-        <span class="tour-item tour-date">LIGHT</span>
-        <span class="tour-item tour-arena" id="light">loading</span>
-        <button onclick= "lightShow()" type="button" class="tour-item tour-btn btn btn-primary">show/hide</button>
       </div>
-      <div class="tour-row">
-        <span class="tour-item tour-date">HUMIDITY</span>
-        <span class="tour-item tour-arena" id="humidity">loading</span>
-        <button onclick="humidityShow()" type="button" class="tour-item tour-btn btn btn-primary">show/hide</button>
+    </header>
+    <section class="content-section container">
+      <h2 class="section-header">your plant environment status</h2>
+      <div class="left card">
+        <h2 class="headtext">plant status</h2>
+        <img class="status-pic" src="./Images/Album 1.png" alt="" />
+        <p>
+          According to legend, the knight Artorias crossed the Abyss. I will
+          rest a while, then return to Firelink Shrine. Indeed we had felt the
+          warmth of Fire, its radiance, and the life it sustaineth.
+        </p>
       </div>
-      <div class="tour-row">
-        <span class="tour-item tour-date">TEMPERATURE</span>
-        <span class="tour-item tour-arena" id="temperature">loading</span>
-        <button onclick="temperatureShow()" type="button" class="tour-item tour-btn btn btn-primary">show/hide</button>
+      <div class="right card">
+        <h2 class="headtext">graph of all data</h2>
+        <canvas id="chart" style="width: 100%; max-width: 1000px"></canvas>
+        <div class="tour-row">
+          <span class="tour-item tour-date">LIGHT:</span>
+          <span class="tour-item tour-arena" id="light">loading</span>
+          <button
+            onclick="lightShow()"
+            type="button"
+            class="tour-item tour-btn btn btn-primary"
+          >
+            show/hide
+          </button>
+        </div>
+        <div class="tour-row">
+          <span class="tour-item tour-date">HUMIDITY:</span>
+          <span class="tour-item tour-arena" id="humidity">loading</span>
+          <button
+            onclick="humidityShow()"
+            type="button"
+            class="tour-item tour-btn btn btn-primary"
+          >
+            show/hide
+          </button>
+        </div>
+        <div class="tour-row">
+          <span class="tour-item tour-date">TEMPERATURE:</span>
+          <span class="tour-item tour-arena" id="temperature">loading</span>
+          <button
+            onclick="temperatureShow()"
+            type="button"
+            class="tour-item tour-btn btn btn-primary"
+          >
+            show/hide
+          </button>
+        </div>
+        <div class="tour-row">
+          <span class="tour-item tour-date">LAST UPDATED ON</span>
+          <span class="tour-item tour-arena" id="time">loading</span>
+        </div>
       </div>
-      <div class="tour-row">
-        <span class="tour-item tour-date">LAST UPDATED ON</span>
-        <span class="tour-item tour-arena" id="time">loading</span>
-      </div>
-  </section>
+    </section>
 
-  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-analytics.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="app.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-</body>
-
-
+    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </body>
 </html>
