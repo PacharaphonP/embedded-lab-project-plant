@@ -29,7 +29,7 @@ let yTemp = [];
 
 let glabel = [];
 var i = 25;
-var currentdata=1;
+var currentdata = 1;
 
 let data1 = [
   {
@@ -55,10 +55,11 @@ let data2 = [
     borderColor: "red",
     fill: false,
     hidden: tempVisible,
-  },{
-    label:"",
+  },
+  {
+    label: "",
     borderColor: "white",
-    }
+  },
 ];
 let graph = new Chart("chart", {
   type: "line",
@@ -78,7 +79,8 @@ let graph = new Chart("chart", {
         borderColor: "green",
         fill: false,
         hidden: !humidVisible,
-      },{
+      },
+      {
         label: "Temperature",
         data: yTemp,
         borderColor: "red",
@@ -104,7 +106,6 @@ let graph = new Chart("chart", {
             min: 0, // minimum will be 0, unless there is a lower value.
             // OR //
             beginAtZero: true, // minimum value will be 0.
-            
           },
         },
       ],
@@ -119,12 +120,11 @@ let graph = new Chart("chart", {
 
 function lightShow() {
   //graph.data.datasets = data1;
-  if(currentdata==1){
+  if (currentdata == 1) {
     if (lightVisible) {
       lightVisible = 0;
       // graph.data.datasets.shift();
-    }
-    else {
+    } else {
       lightVisible = 1;
       // graph.data.datasets.pop();
       // graph.data.datasets.push(lightData);
@@ -135,12 +135,11 @@ function lightShow() {
   }
 }
 function humidityShow() {
-  if(currentdata==1){
-    if (humidVisible){
+  if (currentdata == 1) {
+    if (humidVisible) {
       humidVisible = 0;
       // graph.data.datasets.pop();
-    }
-    else {
+    } else {
       humidVisible = 1;
       // graph.data.datasets.pop();
       // if(lightVisible) graph.data.datasets.push(lightData);
@@ -156,12 +155,25 @@ function temperatureShow() {
   //   currentdata=1;
   // }
   // else {graph.data.datasets = data2;currentdata=2;}
-  if(tempVisible) tempVisible=0;
-  else tempVisible=1;
+  if (tempVisible) tempVisible = 0;
+  else tempVisible = 1;
   graph.data.datasets[2].hidden = !tempVisible;
   graph.update();
 }
-
+function plantDescription() {
+  if (light > 25 && humidity >= 30 && temperature <= 38)
+    return "Your plant is super super healthy";
+  else {
+    return "your plant is not fine(T-T)";
+  }
+}
+function plantPic() {
+  if (light > 25 && humidity >= 30 && temperature <= 38)
+    return "./Images/Shirt.png";
+  else {
+    return "./Images/Shirt.png";
+  }
+}
 function update() {
   firebaseRef = firebase.database().ref("/humidity");
   firebaseRef.once("value").then(function (dataSnapshot) {
@@ -202,6 +214,8 @@ function update() {
   yLight.push(light);
   yHumid.push(humidity);
   yTemp.push(temperature);
+  document.getElementById("plantStatus").innerHTML = plantDescription();
+  document.getElementById("status-pic").src = plantPic();
   graph.update();
 }
 

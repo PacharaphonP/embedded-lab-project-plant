@@ -21,7 +21,7 @@
   box-sizing: border-box;
 
   font-family: "Noto Sans", Raleway;
-  color: #777; /* light gray is easier to read */
+  color: #202020; /* light gray is easier to read */
 }
 
 html,
@@ -78,23 +78,15 @@ body {
 .card {
   display: inline-block;
   width: 48%;
-  background-color: rgb(82, 82, 82);
   border-radius: 5%;
   padding: 20px;
   margin-top: 30px;
-
-  background-image: url("Images/pixil-frame-0.png");
-  /* // now that we have both color and picture
-    // we are going to blend it */
-  background-blend-mode: multiply;
-  /* expand it as wide/tall as it can */
-  background-size: cover;
 }
 .headtext {
   text-align: center;
   text-transform: capitalize;
 }
-.status-pic {
+#status-pic {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -102,6 +94,7 @@ body {
 }
 .left {
   float: left;
+  text-align: center;
 }
 .right {
   float: right;
