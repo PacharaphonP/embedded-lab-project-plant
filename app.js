@@ -171,7 +171,7 @@ function plantPic() {
   if (light > 25 && humidity >= 30 && temperature <= 38)
     return "./Images/Shirt.png";
   else {
-    return "./Images/Shirt.png";
+    return "./Images/Album 3.png";
   }
 }
 function update() {
@@ -220,4 +220,4 @@ function update() {
 }
 
 update();
-var interval = setInterval(update, 500);
+var interval = setInterval(update, 5000);
