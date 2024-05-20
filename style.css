@@ -156,7 +156,7 @@ body {
   background-color: #495f29;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 770px) {
   .card {
     display: block;
     width: 100%;

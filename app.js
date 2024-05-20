@@ -179,28 +179,24 @@ function update() {
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     humidity = dataSnapshot.val().toFixed(2);
-    document.querySelector("#humidity").innerHTML = humidity + " %";
   });
 
   firebaseRef = firebase.database().ref("/light");
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     light = dataSnapshot.val().toFixed(2);
-    document.querySelector("#light").innerHTML = light + " %";
   });
 
   firebaseRef = firebase.database().ref("/temperature");
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     temperature = dataSnapshot.val().toFixed(2);
-    document.querySelector("#temperature").innerHTML = temperature + " °C";
   });
 
   firebaseRef = firebase.database().ref("/lastUpdate");
   firebaseRef.once("value").then(function (dataSnapshot) {
     console.log(dataSnapshot.val());
     lastUpdate = dataSnapshot.val();
-    document.querySelector("#time").innerHTML = lastUpdate;
   });
   if (i == 0) {
     yLight.shift();
@@ -214,6 +210,12 @@ function update() {
   yLight.push(light);
   yHumid.push(humidity);
   yTemp.push(temperature);
+
+  document.querySelector("#humidity").innerHTML = humidity + " %";
+  document.querySelector("#light").innerHTML = light + " %";
+  document.querySelector("#temperature").innerHTML = temperature + " °C";
+  document.querySelector("#time").innerHTML = lastUpdate;
+
   document.getElementById("plantStatus").innerHTML = plantDescription();
   document.getElementById("status-pic").src = plantPic();
   graph.update();
