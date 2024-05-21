@@ -106,7 +106,7 @@ let graph = new Chart("chart", {
             //min: 0, // minimum will be 0, unless there is a lower value.
             // OR //
             beginAtZero: true, // minimum value will be 0.
-            suggestedMax: 50,
+            suggestedMax: 100,
           },
         },
       ],
@@ -163,16 +163,22 @@ function temperatureShow() {
 }
 function plantInfo() {
   if (light > 25 && humidity >= 30 && temperature <= 38)
-    return "Your plant is healthy";
+    return "Your plant environment is healthy";
   else {
     return "Your plant needs water";
   }
 }
 function plantDescription() {
   if (light > 25 && humidity >= 30 && temperature <= 38)
-    return "Your plant is super super healthy";
+    return "Life is not about having perfect days.\
+   Life is not about handling days perfectly. Life is about\
+    perfecting one's character through the having and handling\
+     of every given day.";
   else {
-    return "Oh, Sathana... Master Chadchart... Somebody help me... Water me please, anybody... I've had enough of this environment... The night blocks all sight... Oh, somebody, please...";
+    return "Oh, Sathana... Master Chadchart... Somebody help me...\
+     Water me please, anybody... I've had enough of this \
+     environment... The night blocks all sight... Oh, somebody, \
+     please...";
   }
 }
 function plantPic() {
