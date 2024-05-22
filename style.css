@@ -21,7 +21,8 @@
   box-sizing: border-box;
 
   font-family: "Noto Sans", Raleway;
-  color: #202020; /* light gray is easier to read */
+  color: #491c02; /* light gray is easier to read */
+  font-family: "Cabin", sans-serif;
 }
 
 html,
@@ -30,12 +31,8 @@ body {
   padding: 0;
 }
 
-#chart {
-  background-color: white;
-}
-
 .main-header {
-  background-color: #ee4e4e;
+  background-color: #777777;
   background-image: url("Images/้healthy.png");
 
   /* // now that we have both color and picture
@@ -49,7 +46,8 @@ body {
   text-align: center;
   margin: 0;
   font-size: 4em;
-  font-family: "Noto Sans", "ITC Kabel";
+  /*font-family: "Noto Sans", "ITC Kabel";*/
+
   color: white;
   font-weight: normal;
 }
@@ -63,9 +61,12 @@ body {
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
 }
 
 .section-header {
@@ -75,51 +76,65 @@ body {
   text-align: center;
   font-size: 2.5em;
 }
-.card {
-  display: inline-block;
-  width: 48%;
-  border-radius: 5%;
-  padding: 20px;
-  margin-top: 10px;
-}
+
 .headtext {
   text-align: center;
+
   text-transform: capitalize;
-  margin-top: 0;
+  margin: 0 auto;
+  color: #275204;
+  font-size: 65px;
 }
 #status-pic {
-  margin-left: auto;
-  margin-right: auto;
   display: block;
-  width: 90%;
+  grid-row: span 2;
+  width: 100%;
+  margin-left: 10px;
 }
+
 #plantInfo {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px;
+  color: #314b0c;
+  font-weight: bolder;
+  font-size: 22px;
 }
 #plantStatus {
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 10px;
 }
-.left {
-  float: left;
+.left-card {
+  grid-template-rows: 70px 1fr;
+  display: grid;
+  padding: 20px;
+  margin-top: 30px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-.right {
-  float: right;
+.right-card {
+  display: grid;
+  padding: 20px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
-
+#chart {
+  background-color: white;
+  grid-area: 1/1/5/2;
+  max-width: 500px;
+  margin-right: 20px;
+}
 .btn {
   text-align: center;
   vertical-align: middle;
   padding: 0.67em;
   cursor: pointer;
-  margin-top: 5px;
 }
 
 .tour-row {
-  border-bottom: 1px solid rgb(37, 35, 41);
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
 }
 
 .tour-row:last-child {
@@ -129,26 +144,19 @@ body {
 .tour-item {
   display: inline-block; /* we cannot edit width of inline elem, so we have to make it inline-block elem */
   /* https://www.w3schools.com/css/tryit.asp?filename=trycss_inline-block_span1 */
-  padding-right: 0.5em; /*[point] spacing makes it cleaner*/
+  /*[point] spacing makes it cleaner*/
 }
-
+.tour-arena {
+  margin-left: 10px;
+}
 .tour-date {
-  margin-top: 5px;
-  color: #ee4e4e;
-  width: 46%;
+  color: #4b2200;
   font-weight: bold;
 }
 
-.tour-city {
-  width: 24%;
-}
-
-.tour-arena {
-  width: 52%;
-}
-
 .tour-btn {
-  max-width: 30%;
+  max-width: 110px;
+  min-width: 110px;
   /*[point] we used max-width bc we don't want to make it statically 30%*/
 }
 
@@ -164,9 +172,36 @@ body {
   background-color: #495f29;
 }
 
-@media (max-width: 770px) {
-  .card {
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
+  .left-card {
+    width: 90%;
     display: block;
-    width: 100%;
+  }
+  .right-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+  #status-pic {
+    margin: 25px 20px;
+  }
+  #chart {
+    margin: 0;
+    grid-area: 1/1/2/4;
+  }
+  .tour-row {
+    grid-row-start: 2;
+    margin: 10px 0;
+  }
+  .tour-row:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 3/1/4/4;
+    border-top: 1px solid;
+    padding: 10px;
   }
 }
