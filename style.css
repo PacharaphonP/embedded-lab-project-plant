@@ -125,6 +125,7 @@ body {
   max-width: 500px;
   margin-right: 20px;
 }
+
 .btn {
   text-align: center;
   vertical-align: middle;
@@ -155,21 +156,35 @@ body {
 }
 
 .tour-btn {
-  max-width: 110px;
-  min-width: 110px;
+  max-width: 60px;
+  min-width: 60px;
   /*[point] we used max-width bc we don't want to make it statically 30%*/
 }
 
 .btn-primary {
   color: white;
-  background-color: #799351;
   border: none; /* border none make it clean */
   border-radius: 0.3em;
   font-weight: bold;
 }
-
-.btn-primary:hover {
-  background-color: #495f29;
+.t {
+  background-color: red;
+}
+.h {
+  background-color: green;
+}
+.l {
+  background-color: gold;
+  color: black;
+}
+.t:hover {
+  background-color: rgb(172, 0, 0);
+}
+.h:hover {
+  background-color: rgb(0, 70, 0);
+}
+.l:hover {
+  background-color: rgb(197, 168, 0);
 }
 
 @media (max-width: 1000px) {
@@ -181,28 +196,35 @@ body {
     display: block;
   }
   .headtext {
-    font-size: 60px;
+    font-size: 50px;
   }
   .right-card {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: 1fr auto auto;
     width: 90%;
+    gap: 0;
   }
+
   #status-pic {
     margin: 25px 0;
   }
   #chart {
     margin: 0;
     grid-area: 1/1/2/4;
+    width: 100%;
+    max-width: none;
   }
   .tour-row {
     grid-row-start: 2;
     margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
   }
-  .tour-row {
-    display: block;
-  }
+
   .tour-row:last-child {
     display: flex;
     justify-content: center;
