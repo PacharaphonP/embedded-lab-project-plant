@@ -180,13 +180,17 @@ body {
     width: 90%;
     display: block;
   }
+  .headtext {
+    font-size: 60px;
+  }
   .right-card {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     grid-template-rows: 1fr auto auto;
+    width: 90%;
   }
   #status-pic {
-    margin: 25px 20px;
+    margin: 25px 0;
   }
   #chart {
     margin: 0;
@@ -195,6 +199,9 @@ body {
   .tour-row {
     grid-row-start: 2;
     margin: 10px 0;
+  }
+  .tour-row {
+    display: block;
   }
   .tour-row:last-child {
     display: flex;
